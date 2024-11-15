@@ -1,0 +1,375 @@
+:root {
+    /*primary*/
+    --active-input-border: linear-gradient(hsl(249, 99%, 64%) to hsl(278, 94%, 30%));
+    --red-input-errors: hsl(0, 100%, 66%);
+    /*Neutral*/
+    --white: hsl(0, 0%, 100%);
+    --light-grayish-violet: hsl(270, 3%, 87%);
+    --dark-grayish-violet: hsl(279, 6%, 55%);
+    --very-dark-violet: hsl(278, 68%, 11%);
+    --body-font-size: 18px;
+
+}
+
+@font-face {
+    font-family: 'Space Grotesk';
+    src: url(./fonts/Space_Grotesk/SpaceGrotesk-VariableFont_wght.ttf);
+}
+
+body {
+    margin: 0;
+    font-size: var(--body-font-size);
+    color: var(--very-dark-violet);
+    min-height: 100svh;
+    width: 100svw;
+    container: body / inline-size;
+    font-family: 'Space Grotesk';
+}
+
+main {
+    height: 100cqh;
+    width: 100cqw;
+    display: grid;
+    place-items: center;
+    grid-template-columns: 30fr 100fr;
+}
+
+section[class="left-space"] {
+    background-image: url(./images/bg-main-desktop.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-content: center;
+    gap: 5%;
+    position: relative;
+}
+
+section[class~="card"] {
+    width: 447px;
+    height: 245px;
+    display: grid;
+    grid-column: 1fr;
+    place-items: center;
+    color: var(--white);
+    user-select: none;
+}
+
+section[class="main-card"] {
+    height: 80%;
+    width: 80%;
+    display: grid;
+    grid-template-rows: 1fr;
+}
+
+section[class~="card-front"] {
+    background-image: url(./images/bg-card-front.png);
+    position: relative;
+    left: 8cqw;
+}
+
+section[class~="card-back"] {
+    background-image: url(./images/bg-card-back.png);
+    position: relative;
+    left: 12cqw;
+}
+
+section[id="card-cyc"] {
+    position: absolute;
+    right: 50px;
+}
+
+section[class="card-footer"] {
+    display: flex;
+    justify-content: space-between;
+}
+
+section[id="card-body"] {
+    font-size: 32px;
+}
+
+section[class="card-header"] {
+    justify-self: start;
+}
+
+section[class="form-area"] {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+form[id="card-details"] {
+    width: 27cqw;
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr;
+    max-width: 500px;
+
+}
+
+section[class="card-form-group"] {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+        "card-month-label card-month-label cyc-label cyc-label"
+        "card-month card-year cyc cyc";
+    gap: 5%;
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    height: 40px;
+    border: 2px solid var(--very-dark-violet);
+    accent-color: var(--very-dark-violet);
+    outline: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+label {
+    width: 100%;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    justify-self: start;
+}
+
+label::after {
+    content: "";
+    text-transform: none;
+    text-wrap: nowrap;
+}
+
+section[class="month-year"] {
+    display: flex;
+    gap: 5%;
+}
+
+input[id="card-month"],
+input[id="card-year"] {
+    width: 40%;
+}
+
+form[id="card-details"]:has(input[patternMismatch="true"][pattern="[0-9]{1,10}"]:invalid) label:has(input[patternMismatch="true"][pattern="[0-9]{1,10}"]:invalid)::after {
+    content: "Wrong format,numbers only";
+    color: var(--red-input-errors);
+}
+
+form[id="card-details"]:has(input[valueMissing="true"]:invalid) label:has(input[valueMissing="true"]:invalid)::after {
+    content: "Can't be blank";
+    color: var(--red-input-errors);
+}
+
+form[id="card-details"]:has(input[tooshort="true"]:invalid) label:has(input[tooshort="true"]:invalid)::after {
+    content: "Too short";
+    color: var(--red-input-errors);
+}
+
+input[valueMissing="true"]:invalid,
+input[patternMismatch="true"]:invalid,
+input[tooshort="true"]:invalid {
+    border-color: var(--red-input-errors);
+}
+
+label[for="card-month"] {
+    grid-area: card-month-label;
+}
+
+input[id="card-month"] {
+    grid-area: card-month;
+}
+
+input[id="card-year"] {
+    grid-area: card-year;
+}
+
+label[for="cyc"] {
+    grid-area: cyc-label;
+}
+
+input[id="cyc"] {
+    grid-area: cyc;
+}
+
+button[id="card-details-submit"] {
+    width: 100%;
+    background: var(--very-dark-violet);
+    border-radius: 5px;
+    border: 0;
+    padding: 2%;
+    cursor: pointer;
+    height: 40px;
+    color: var(--white);
+}
+
+section[class="complete-card"] {
+    display: none;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+section[class="complete-card-container"] {
+    width: 50%;
+    height: 50%;
+    place-items: center;
+    display: grid;
+}
+
+section[class="complete-card-container"] h1 {
+    text-transform: uppercase;
+    font-size: 2.2rem;
+}
+
+section[class="complete-card-container"] h2 {
+    color: var(--dark-grayish-violet);
+}
+
+section[class="complete-image"] {
+    background-image: url(./images/icon-complete.svg);
+    height: 150px;
+    width: 150px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    align-self: end;
+}
+
+div[class="attribution"] {
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+button[id="continue"] {
+    width: 80%;
+    background: var(--very-dark-violet);
+    border-radius: 5px;
+    border: 0;
+    padding: 5%;
+    cursor: pointer;
+    height: 40px;
+    color: var(--white);
+    display: grid;
+    place-content: center;
+}
+
+@container (inline-size < 1300px) {
+    :root {
+        --body-font-size: 14px;
+    }
+
+    main {
+        grid-template-columns: unset;
+        grid-template-rows: 40%;
+    }
+
+    section[class~="card"] {
+        transform: scale(80%, 80%);
+    }
+
+    section[class~="card-front"] {
+        background-image: url(./images/bg-card-front.png);
+        position: absolute;
+        left: 10%;
+        z-index: 1;
+        top: 60%;
+        right: 5%;
+    }
+
+    section[class~="card-back"] {
+        background-image: url(./images/bg-card-back.png);
+        position: absolute;
+        left: 17%;
+        bottom: -1%;
+        z-index: 0;
+    }
+
+
+    section[class="left-space"] {
+        background-image: url(./images/bg-main-mobile.png);
+        height: 25cqh;
+        align-self: baseline;
+    }
+
+    form[id="card-details"] {
+        width: 80cqw;
+        align-self: baseline;
+    }
+
+    section[class="main-card"] {
+        gap: 15%;
+    }
+
+    section[class="card-footer"] {
+        margin-bottom: 5%;
+    }
+}
+
+@container (inline-size=1280px) {
+    section[class="card"] {
+        transform: scale(75%, 70%);
+    }
+
+    section[class~="card-front"] {
+        background-image: url(./images/bg-card-front.png);
+        position: absolute;
+        left: 28%;
+        z-index: 1;
+        top: 0%;
+    }
+
+    section[class~="card-back"] {
+        background-image: url(./images/bg-card-back.png);
+        position: absolute;
+        left: 34%;
+        bottom: -9cqw;
+        z-index: 0;
+    }
+}
+
+@container (inline-size < 800px) {
+    section[class~="card"] {
+        transform: scale(70%, 70%);
+    }
+
+    section[class~="card-front"] {
+        background-image: url(./images/bg-card-front.png);
+        position: absolute;
+        left: -11%;
+        z-index: 1;
+        top: 37%;
+    }
+
+    section[class~="card-back"] {
+        background-image: url(./images/bg-card-back.png);
+        position: absolute;
+        left: 2%;
+        bottom: -14cqw;
+        z-index: 0;
+    }
+}
+
+@container (inline-size < 450px) {
+    section[class~="card"] {
+        transform: scale(60%, 60%);
+    }
+
+    section[class="complete-card-container"] {
+        width: 90%;
+    }
+
+    section[class="complete-card"] {
+        position: absolute;
+        top: 10%;
+    }
+}
+
+@container (inline-size < 360px) {
+    section[class="card"] {
+        transform: scale(50%, 50%);
+    }
+}
